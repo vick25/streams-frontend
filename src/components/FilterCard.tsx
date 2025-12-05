@@ -21,16 +21,17 @@ export const FilterCard: React.FC<FilterCardProps> = ({
             {/* Header of Card */}
             <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
                 <h2 className="text-xl font-bold text-gray-900">Map Options</h2>
-                <button onClick={onClose} className="md:hidden text-gray-400 hover:text-gray-600">
+                <button type='button' onClick={onClose} title="Close map options" className="md:hidden text-gray-400 hover:text-gray-600">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
 
             {/* Filter Section */}
             <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                <label htmlFor="category-select" className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
                 <div className="relative">
                     <select
+                        id="category-select"
                         value={selectedCategory}
                         onChange={(e) => onCategoryChange(e.target.value)}
                         className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg shadow-sm border cursor-pointer hover:bg-white transition-colors"
@@ -39,14 +40,11 @@ export const FilterCard: React.FC<FilterCardProps> = ({
                             <option key={cat} value={cat}>{cat}</option>
                         ))}
                     </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
-                    </div>
                 </div>
             </div>
 
             {/* Feature Details Section */}
-            <div className="flex-grow mt-2 overflow-y-auto">
+            <div className="grow mt-2 overflow-y-auto">
                 {selectedFeature ? (
                     <div className="animate-fade-in space-y-4">
                         <div className="flex justify-between items-start">

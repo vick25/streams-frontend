@@ -34,17 +34,14 @@ export const CylinderGraph: React.FC<CylinderGraphProps> = ({ current, max }) =>
                     </div>
 
                     {/* Liquid */}
-                    <div className={`absolute bottom-0 left-0 w-full transition-all duration-1000 ease-out z-10 ${getColor(percentage)} opacity-80`}
-                        style={{ height: `${percentage}%` }}
-                    >
+                    <div className={`absolute bottom-0 left-0 w-full transition-all duration-1000 ease-out z-10 ${getColor(percentage)} opacity-80 h-[${percentage}%]`}>
                         {/* Surface reflection */}
                         <div className="w-full h-2 bg-white opacity-20 absolute top-0"></div>
                     </div>
                 </div>
-
                 {/* Axis Labels */}
                 {/* py-[2px] compensates for the border-2 (2px) of the cylinder to align text with internal content area */}
-                <div className="h-40 py-[2px] flex flex-col justify-between select-none">
+                <div className="h-40 py-0.5 flex flex-col justify-between select-none">
                     {ticks.map((tick) => (
                         <div key={tick} className="flex items-center h-0 transform -translate-y-px">
                             <span className="text-[10px] font-mono text-gray-500 font-medium">
