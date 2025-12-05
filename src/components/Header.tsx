@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
-                        <button
+                        <button type='button'
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="text-gray-500 hover:text-gray-900 focus:outline-none p-2"
                         >

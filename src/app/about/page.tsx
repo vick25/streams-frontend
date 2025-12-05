@@ -7,7 +7,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <Header />
-            <main className="flex-grow bg-gray-50 flex flex-col items-center justify-center p-8">
+            <main className="grow bg-gray-50 flex flex-col items-center justify-center p-8">
                 <div className="bg-white p-8 rounded-2xl shadow-sm text-center max-w-2xl">
                     <h1 className="text-3xl font-bold text-gray-900 mb-4">About STREAMS</h1>
                     <p className="text-lg text-gray-600 mb-6">
