@@ -1,8 +1,10 @@
 'use client';
 
 import { MapFeature } from '@/lib/types';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'leaflet/dist/leaflet.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
     CircleMarker,
     MapContainer,
@@ -12,6 +14,7 @@ import {
     useMap,
     ZoomControl
 } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 interface LeafletMapProps {
     features: MapFeature[];
@@ -106,41 +109,45 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ features, onFeatureClick, selec
                 />
             )}
 
-            {features.map((feature) => {
-                const isSelected = feature.id === selectedFeatureId;
-                const stateColorClass = feature.state === 'Functional' ? 'text-green-600'
-                    : feature.state === 'Needs Repair' ? 'text-yellow-600'
-                        : 'text-red-600';
 
-                return (
-                    <CircleMarker
-                        key={feature.id}
-                        center={[feature.lat, feature.lng]}
-                        radius={isSelected ? 12 : 8}
-                        pathOptions={{
-                            color: isSelected ? '#1d4ed8' : '#3b82f6',
-                            fillColor: isSelected ? '#1d4ed8' : '#60a5fa',
-                            fillOpacity: 0.8,
-                            weight: isSelected ? 3 : 2
-                        }}
-                        eventHandlers={{
-                            click: () => onFeatureClick(feature),
-                            mouseover: (e) => e.target.openPopup(),
-                            mouseout: (e) => e.target.closePopup()
-                        }}
-                    >
-                        <Popup closeButton={false} className="custom-popup">
-                            <div className="text-center min-w-[150px]">
-                                <strong className="block text-blue-600 font-sans text-sm mb-1">{feature.type}</strong>
-                                <span className="text-gray-600 text-xs font-sans block mb-2">{feature.location}</span>
-                                <span className={`text-xs font-bold font-sans ${stateColorClass} px-2 py-1 bg-gray-100 rounded-full border border-gray-200`}>
-                                    {feature.state}
-                                </span>
-                            </div>
-                        </Popup>
-                    </CircleMarker>
-                );
-            })}
+            {/* Memoized Markers with Clustering */}
+            <MarkerClusterGroup>
+                {useMemo(() => features.map((feature) => {
+                    const isSelected = feature.id === selectedFeatureId;
+                    const stateColorClass = feature.state === 'Functional' ? 'text-green-600'
+                        : feature.state === 'Needs Repair' ? 'text-yellow-600'
+                            : 'text-red-600';
+
+                    return (
+                        <CircleMarker
+                            key={feature.id}
+                            center={[feature.lat, feature.lng]}
+                            radius={isSelected ? 12 : 8}
+                            pathOptions={{
+                                color: isSelected ? '#1d4ed8' : '#3b82f6',
+                                fillColor: isSelected ? '#1d4ed8' : '#60a5fa',
+                                fillOpacity: 0.8,
+                                weight: isSelected ? 3 : 2
+                            }}
+                            eventHandlers={{
+                                click: () => onFeatureClick(feature),
+                                mouseover: (e) => e.target.openPopup(),
+                                mouseout: (e) => e.target.closePopup()
+                            }}
+                        >
+                            <Popup closeButton={false} className="custom-popup">
+                                <div className="text-center min-w-[150px]">
+                                    <strong className="block text-blue-600 font-sans text-sm mb-1">{feature.type}</strong>
+                                    <span className="text-gray-600 text-xs font-sans block mb-2">{feature.location}</span>
+                                    <span className={`text-xs font-bold font-sans ${stateColorClass} px-2 py-1 bg-gray-100 rounded-full border border-gray-200`}>
+                                        {feature.state}
+                                    </span>
+                                </div>
+                            </Popup>
+                        </CircleMarker>
+                    );
+                }), [features, selectedFeatureId, onFeatureClick])}
+            </MarkerClusterGroup>
 
             <MapUpdater selectedFeature={features.find(f => f.id === selectedFeatureId)} />
         </MapContainer>
