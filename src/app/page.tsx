@@ -42,7 +42,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-grow flex flex-col">
+      <main className="grow flex flex-col">
         {/* Hero / Map Section */}
         <section className="relative w-full h-[600px] md:h-[700px] bg-gray-200 overflow-hidden">
 
@@ -56,13 +56,13 @@ export default function Home() {
           {/* Mobile Toggle Button for Filter Card */}
           <button
             onClick={toggleFilter}
-            className="md:hidden absolute top-4 left-4 z-[500] bg-white p-2 rounded-md shadow-lg text-blue-600 font-bold text-sm"
+            className="md:hidden absolute top-4 left-4 z-500 bg-white p-2 rounded-md shadow-lg text-blue-600 font-bold text-sm"
           >
             {isFilterVisible ? 'Hide Info' : 'Show Info'}
           </button>
 
           {/* Right Side Overlay Container */}
-          <div className="absolute top-0 right-0 h-full w-full pointer-events-none flex flex-col items-end justify-start z-[1000] md:p-6">
+          <div className="absolute top-0 right-0 h-full w-full pointer-events-none flex flex-col items-end justify-start z-1000 md:p-6">
 
             {/* Base Layer Control (Map | Satellite) - Visible always */}
             <div className="pointer-events-auto bg-white rounded-lg shadow-lg border border-gray-100 p-1 flex mb-4 mr-4 md:mr-0 mt-4 md:mt-0">
