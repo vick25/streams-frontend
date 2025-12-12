@@ -2,7 +2,13 @@ export interface MapFeature {
   id: string;
   lat: number;
   lng: number;
-  type: "Bassin de retention" | "Barrage" | "Citerne ou Réservoir" | "Couverture végétale" | "Puits";
+  type:
+    | "Bassin de retention"
+    | "Barrage"
+    | "Citerne ou Réservoir"
+    | "Couverture végétale"
+    | "Déversoir"
+    | "Puits";
   location: string;
   state: "Functional" | "Needs Repair" | "Critical";
   lastVerification: string;

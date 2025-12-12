@@ -1,5 +1,5 @@
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import React from 'react';
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
+import type React from 'react';
 
 interface CustomLinkProps extends NextLinkProps {
     children: React.ReactNode;

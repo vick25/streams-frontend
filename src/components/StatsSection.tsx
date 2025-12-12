@@ -1,5 +1,5 @@
 import { STATS } from '@/lib/constants';
-import React from 'react';
+import type React from 'react';
 
 export const StatsSection: React.FC = () => {
     return (
