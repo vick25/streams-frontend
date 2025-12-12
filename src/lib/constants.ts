@@ -1,4 +1,4 @@
-import { MapFeature, StatItem } from "./types";
+import type { MapFeature, StatItem } from "./types";
 
 // Helper to generate random points around a center
 const generatePoints = (
@@ -18,11 +18,12 @@ const generatePoints = (
       "Barrage",
       "Citerne ou Réservoir",
       "Couverture végétale",
+      "Déversoir",
       "Puits",
     ];
     const type = types[Math.floor(Math.random() * types.length)];
 
-    const states: MapFeature["state"][] = [
+    const _states: MapFeature["state"][] = [
       "Functional",
       "Needs Repair",
       "Critical",
@@ -92,6 +93,7 @@ export const CATEGORIES = [
   "Barrage",
   "Citerne ou Réservoir",
   "Couverture végétale",
+  "Déversoir",
   "Puits",
 ];
 
@@ -101,3 +103,65 @@ export const STATS: StatItem[] = [
   { value: "150+", label: "Quartier" },
   { value: "99.9%", label: "Status" },
 ];
+
+// Mock database values for location dropdowns
+export const LOCATION_DATA = {
+  communes: [
+    "Bandalungwa",
+    "Barumbu",
+    "Bumbu",
+    "Gombe",
+    "Kalamu",
+    "Kasa-Vubu",
+    "Kimbanseke",
+    "Kinshasa",
+    "Kintambo",
+    "Kisenso",
+    "Lemba",
+    "Limete",
+    "Lingwala",
+    "Makala",
+    "Maluku",
+    "Masina",
+    "Matete",
+    "Mont-Ngafula",
+    "Ndjili",
+    "Ngaba",
+    "Ngaliema",
+    "Ngiri-Ngiri",
+    "Nsele",
+    "Selembao",
+  ].sort(),
+  quartiers: [
+    "Binza Ozone",
+    "Binza Pigeon",
+    "Cité Verte",
+    "GB",
+    "Industriel",
+    "Kimbondo",
+    "Kingabwa",
+    "Lemba Super",
+    "Mama Yemo",
+    "Matonge",
+    "Mimosas",
+    "Mososo",
+    "Righini",
+    "Salongo",
+    "Socimat",
+    "Utexafrica",
+    "Virunga",
+  ].sort(),
+  avenues: [
+    "Avenue de la Liberation",
+    "Avenue des Huileries",
+    "Avenue Kasa-Vubu",
+    "Avenue Lumumba",
+    "Avenue Mulamba",
+    "Avenue Nguma",
+    "Avenue Poids Lourds",
+    "Boulevard du 30 Juin",
+    "Boulevard Triomphal",
+    "Route By Pass",
+    "Route de Matadi",
+  ].sort(),
+};
