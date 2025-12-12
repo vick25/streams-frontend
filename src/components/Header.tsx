@@ -1,8 +1,12 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Link } from './Link'; // Use our custom Link component
 
 export const Header: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     const navLinks = [
         { name: 'Dashboard', href: '/dashboard' },
@@ -25,15 +29,18 @@ export const Header: React.FC = () => {
 
                     {/* Center: Navigation (Desktop) */}
                     <nav className="hidden md:flex space-x-8">
-                        {navLinks.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="text-gray-500 hover:text-blue-600 font-medium transition-colors text-sm"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
+                        {navLinks.map((item) => {
+                            const isActive = pathname === item.href;
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={`text-md transition-colors pb-1 ${isActive ? 'font-bold text-blue-600 border-b-2 border-blue-600' : 'font-medium text-gray-900 hover:text-blue-600'}`}
+                                >
+                                    {item.name}
+                                </Link>
+                            );
+                        })}
                     </nav>
 
                     {/* Right: Actions (Desktop) */}
@@ -73,26 +80,29 @@ export const Header: React.FC = () => {
             {isMobileMenuOpen && (
                 <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-16 shadow-lg z-50">
                     <div className="px-4 py-4 space-y-4">
-                        {navLinks.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="block text-gray-700 hover:text-blue-600 font-medium py-2"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
+                        {navLinks.map((item) => {
+                            const isActive = pathname === item.href;
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={`block py-2 ${isActive ? 'font-bold text-blue-600' : 'font-medium text-gray-700 hover:text-blue-600'}`}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {item.name}
+                                </Link>
+                            );
+                        })}
                         <div className="h-px bg-gray-100 my-2"></div>
                         <div className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
                             <span className="text-gray-700 font-medium">Language</span>
                             <div className="flex space-x-2">
-                                <button className="text-blue-600 font-bold">EN</button>
+                                <button type="button" className="text-blue-600 font-bold">EN</button>
                                 <span className="text-gray-300">|</span>
-                                <button className="text-gray-500 hover:text-blue-600">FR</button>
+                                <button type="button" className="text-gray-500 hover:text-blue-600">FR</button>
                             </div>
                         </div>
-                        <button className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold text-center">
+                        <button type="button" className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold text-center">
                             Login
                         </button>
                     </div>
