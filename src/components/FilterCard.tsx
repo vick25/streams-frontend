@@ -34,7 +34,7 @@ export const FilterCard: React.FC<FilterCardProps> = ({
                         id="category-select"
                         value={selectedCategory}
                         onChange={(e) => onCategoryChange(e.target.value)}
-                        className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg shadow-sm border cursor-pointer hover:bg-white transition-colors"
+                        className="block w-full pl-3 pr-10 py-3 text-gray-900 text-base border-gray-300 bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg shadow-sm border cursor-pointer hover:bg-white transition-colors"
                     >
                         {CATEGORIES.map((cat) => (
                             <option key={cat} value={cat}>{cat}</option>
