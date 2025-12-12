@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 export const Footer: React.FC = () => {
@@ -9,10 +10,9 @@ export const Footer: React.FC = () => {
                     {/* Left: Brand & Description */}
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-lg">
-                                S
-                            </div>
-                            <span className="font-bold text-xl tracking-tight">STREAMS</span>
+                            <Image src="/streamlogo.png" alt='Streams Logo' width={64} height={64}
+                                className="bg-white rounded-full p-2 flex items-center justify-center text-white font-bold text-lg" />
+                            <span className="font-bold text-xl tracking-tight" title='Sustainable Tools for Rainwater Evaluation And Management'>STREAM</span>
                         </div>
                         <p className="text-gray-400 text-sm max-w-xs text-center md:text-left">
                             Innovative mapping solutions for a connected world.

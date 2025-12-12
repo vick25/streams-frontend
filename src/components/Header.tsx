@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Link } from './Link'; // Use our custom Link component
@@ -21,10 +22,9 @@ export const Header: React.FC = () => {
                 <div className="flex justify-between items-center h-16">
                     {/* Left: Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-lg">
-                            S
-                        </div>
-                        <span className="font-bold text-xl tracking-tight text-gray-900">STREAMS</span>
+                        <Image src="/streamlogo.png" alt='Streams Logo' width={56} height={56}
+                            className="rounded flex items-center justify-center text-white font-bold text-lg" />
+                        <span className="font-bold text-xl tracking-tight text-gray-900" title='Sustainable Tools for Rainwater Evaluation And Management'>STREAM</span>
                     </Link>
 
                     {/* Center: Navigation (Desktop) */}
